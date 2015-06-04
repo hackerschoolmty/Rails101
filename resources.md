@@ -61,5 +61,5 @@ _Rails? I can do the same work in less time with Java or .NET_
 _Ruby on Rails? Sure, I know it's infraschu …infraschu …infraschucchur_ 
 — Enrique Peña Nieto (President of Mexico).
 
-_If we tell them we used the 26M pesos on a Ruby on Rails project and SHALALA_ 
+_What ff we tell them we've used the 26M pesos on a Ruby on Rails project and SHALALA_ 
 — Ivonne Álvarez (Almost Governor of the state of Nuevo León Mexico).
