@@ -33,3 +33,11 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+# Ignore vim temporary files
+*.swp
+
+# Ignore mentor configurations
+/trash
+/demos
+mentor_notes.md
