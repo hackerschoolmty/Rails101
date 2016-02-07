@@ -4,7 +4,7 @@
 
 * [Slides](https://github.com/hackerschoolmty/Rails101/blob/master/01/01.pdf)
 * [Rails setup](#rails-setup)
-	* [Mac & Linux](#mac-and-linux)
+	* [Mac & Linux](#mac-os--linux)
 	* [Windows](#windows)
 * [Basic Rails commands](#basic-rails-commands)
 	* [rails new](#rails-new)
@@ -462,7 +462,7 @@ $ rake stats
   Code LOC: 5     Test LOC: 0     Code to Test Ratio: 1:0.0
 ```
 
-### bundler
+### bundle commands
 
 Lets talk about [bundler](http://bundler.io)! If you're developing as a part of your team, you probably want every member of the team to use the same version of dependencies. The same happens when you deploy, you want to ensure that the version of the dependencies that you developed with are the ones actually used in production. Welll bundler take care of this for you! 
 

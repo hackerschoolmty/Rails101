@@ -4,7 +4,7 @@
 
 * [Structure of Rails app](#structure-of-rails-app)
 * [Rails Conventions](#rails-conventions)
-* [Controllers](#controlers)
+* [Controllers](#controllers)
 	* [Conventions](#conventions)
 	* [Generator syntax](#generator-syntax)
 	* [Actions & rendering](#actions--rendering)
@@ -13,7 +13,7 @@
 	* [Generator syntax](#generator-syntax-1)
 	* [Creating a new record](#creating-new-records)
 	* [Finding existing records](#finding-existing-records)
-	* [Updating new records](#updating-new-records)
+	* [Updating records](#updating-records)
 	* [Deleting records](#deleting-records)
 	* [Validations](#validations)
 	* [Associations](#associations)
@@ -27,10 +27,9 @@
 	* [Helper and formatting links](#helpers-for-formatting-and-linking)
 * [Basic routing](#basic-routing) 
 	* [REST](#rest)
-	* [Rails resources](#rails-sources)
+	* [Rails resources](#rails-resources)
 	* [Personalized actions](#personalized-actions)
-	* [Nested resources](#nested-resources)
-* [Exercises](https://github.com/hackerschoolmty/Rails101/blob/master/02/readme.md)
+* [Exercises](https://github.com/hackerschoolmty/Rails101/blob/master/02/exercises.md)
 
  
 ## Structure of rails app
@@ -564,7 +563,7 @@ We can go crazy and chain them together
 => Product.where("status = 'ACTIVE'").order("price").limit(10).select("name")
 ```
 
-### Updating new records
+### Updating records
 
 Once we have found our desired records, we can update his information by calling `save` method. So to update a bunch of products:
 

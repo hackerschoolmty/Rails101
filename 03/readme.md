@@ -14,7 +14,7 @@
 * [Debugging](#debugging)
 	* [pry](#pry)
 	* [byebug](#byebug)
-* [Exercises!](https://github.com/hackerschoolmty/Rails101/03/exercises.md)
+* [Exercises](https://github.com/hackerschoolmty/Rails101/blob/master/03/exercises.md)
 
 ## Active Record
 
