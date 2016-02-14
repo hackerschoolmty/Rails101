@@ -4,9 +4,7 @@
 
 * [Active Record](#active-record)
 	* [scopes](#scopes)
-	* [callbacks](#callbacks)
 	* [dirty methods](#dirty-methods)
-	* [save, save!, create, create!](#save-save-create-create)
 * [Controllers](#controllers)
 	* [Strong parameters](#strong-parameters)
 	* [Actionhooks](#actionhooks)	
@@ -67,39 +65,6 @@ end
  => Product.created_before(2.days.ago)
  ```
    
-### callbacks
-
-Active Record controls the life cycle of model objects through callbacks. A normal life cycle of an object would consist on:
-
-- create an object
-- modified it
-- updated it
-- and finally destroyed it 
-
-Using callbacks, Active Record lets our code participate in this monitoring process, by writing code that gets invoked at any significant event in the life of an object.  
-
-Active Record defines sixteen [callbacks](http://guides.rubyonrails.org/active_record_callbacks.html#available-callbacks) and with these callbacks we can perform validations, map column values as they pass in and out of the database, and even prevent certain operations from completing, throughout the model life cycle.
-
-
-```ruby
-class Post < ActiveRecord::Base
-  before_validation :downcase_title
-  
-  def downcase_title
-    self.title = title.downcase
-  end
-end
-```
-
-```ruby 
-class Article < ActiveRecord::Base
-  after_destroy :log_destroy_action
- 
-  def log_destroy_action
-    puts 'Article destroyed'
-  end
-end
-```
 
 ### dirty methods
 
@@ -151,15 +116,6 @@ You can take this one step further and track whether a particular attribute has 
 => nil
 => false
 ```
-
-### save, save!, create, create!
-
-There are two versions of the save and create method, that differ in the way they report errors: 
-
-* `save` returns true if the record was saved and `nil` otherwise.* `save!` returns true if the save operation succeeded and it raises an exception otherwise if not.* `create` returns the object regardless of whether it was successfully saved. If you want to determine wheter the data was actually written, you’ll need to check the object for validation errors* `create!` returns the Active Record object on success and it raises an exception otherwise.
-
-Active Record assumes `save` is called in thecontext of a controller’s action method and that the view code will be presenting any errors back to the end user. And for many applications, that’s the normal behaviour! 
-However, if we need to save a model object in a context where we want to make sure to handle all errors, we should use `save!`.
 
 ## Controllers
 
