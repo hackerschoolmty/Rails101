@@ -10,11 +10,10 @@
 ## Guides, blogs & more.
 
 * [Ruby on Rails official page](http://rubyonrails.org)
-* [Ruby on Rails Edge guides](http://edgeguides.rubyonrails.org/) General reference &#10025; 
+* [Ruby on Rails guides](http://guides.rubyonrails.org) General reference &#10025; 
 * [The Ruby on Rails Tutorial](https://www.railstutorial.org/book/beginning), Learn RoR, by Michael Hartl
 * [Agile Web Development with Rails 4](https://pragprog.com/book/rails4/agile-web-development-with-rails) $$
 * [Ruby Rogues Podcast](http://devchat.tv/ruby-rogues) Podcast.
-* [RailsApps Tutorials](https://tutorials.railsapps.org/rails-tutorial?_ga=1.90123803.1662369699.1433433601) Some of them are free, some not! :S
 * [Rails Doctrine](http://rubyonrails.org/doctrine)
 
 ===
