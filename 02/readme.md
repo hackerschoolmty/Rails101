@@ -93,7 +93,7 @@ Rails has a place for everything, let's start with the files in the top of the a
 |------------------|-------------|
 | config.ru | Configures the Rack Webserver inteerface, either to create Rails application or to use Rack middleware |
 | Gemfile | Specifies the dependencies (gems) inside our Rails application.   | 
-| Gemfile.lock | Records the specific versions for each of your rails applications dependencie's. This file is maintained by Bundler  | 
+| Gemfile.lock | Records the specific versions for each of your rails applications dependencies. This file is maintained by Bundler  | 
 | Rakefile | Contains tasks to run tests, create documentation, and more. |
 | README | By default this will contain general information about the Rails framework, but is recommended to use this file to create a nice introductory page so that future developers will know what our application does|
 
@@ -179,7 +179,7 @@ Some important things to notice about this folder
 
 - Before running your application, Rails loads and executes `config/environment.rb` and `config/application.rb` files
 - In addition Rails will also load a per-environment configuration file. This file lives in the `environments` directory and is where you place configuration options that vary depending on the environment
-- If you have special requirements, maybe you're in favor of creating an staging enviroment, you can easily create it with rails. Just add a new configuration file (`config/staging.rb`)and a new section in the database configuration file, and you are ready to go! 
+- If you have special requirements, maybe you're in favor of creating an staging enviroment, you can easily create it with rails. Just add a new configuration file (`config/staging.rb`) and a new section in the database configuration file, and you are ready to go! 
 
 ### lib folder
 
@@ -206,7 +206,7 @@ This is the folder that the outside world can see, the external face of your app
 
 ### bin folder
 
-Contains all necessary scripts to run your application,  and that means that this directory contains the Rails script. This is the script that is run when you run `rails` command in the command line. Take notice that the first argument you pass to that script determines the function Rails will perform. 
+Contains all necessary scripts to run your application,  and that means that this directory contains the Rails script. This is the script that is run when you execute `rails` command in the command line. Take notice that the first argument you pass to that script determines the function Rails will perform. 
 
 ### tmp folder
 
@@ -309,40 +309,38 @@ end
 
 The former will render by default `index.html.erb` inside `app/views/products/` directory.
 
-But as everything in rails, you can behave different if you want to uou can also have views that aren't named after actions. 
-
+But as everything in rails, you can behave differently, this will render view related to `show` action from the same controller. 
 
 ```ruby
 class ProductsController < ApplicationController
   def index
-    render(file: 'another_view')
+    render action: 'show'
+  end
+end 
+```
+
+This will render `books/index.html.erb` file instead of `products/index.html.erb` file.  
+
+```ruby
+class ProductsController < ApplicationController
+  def index
+    render "books/index"
   end
 end 
 ``` 
 
-This will render `another_view.html.erb` file instead of `index.html.erb` file. 
+
+This one allows you to retrieve files from anywhere on your filesystem. 
 
 ```ruby
 class ProductsController < ApplicationController
   def index
-    render(action: 'show')
+    render file: "/path/to/rails/app/views/books/edit.html.erb"
   end
 end 
 ```
 
-This will render view related to `show` action. And finally
-
-```ruby
-class ProductsController < ApplicationController
-  def index
-    render(template: 'dir/template')
-  end
-end 
-```
-This one allows you to store templates anywhere on your filesystem. 
-
-Just note that just because you can, doesn't mean you should.
-
+Just note that just because you can, **doesn't mean you should**. Just use the simplest one that makes sense for the code you are writing
 
 
 ## Models
@@ -350,7 +348,6 @@ Just note that just because you can, doesn't mean you should.
 Models handles the representation of business logic and the stored information in the database.
 
 Models uses ActiveRecord underneath. ActiveRecord is the object-relational mapping (ORM) supplied with Rails, and it's basically the **M** in MVC
-
 
 An ORM (Object Relational Mapping system) a technique that connects the rich objects of an application to tables in a relational database.
 
@@ -450,6 +447,7 @@ The same could also be done with an optional block
 Product.new do |p|
   p.name = "A productirijillo"
   p.save
+end
 ```
 Finally we can assign a new object into a variable as a hash of attribute values:
 
@@ -458,7 +456,7 @@ my_product = Product.new(name: "A Productirijillo")
 my_product.save
 ```
 
-If you look closely you can observe that we always use `save`method that is because `new` method builds an object in  memory, but it saves into database until `save` method is executed. 
+If you look closely you can observe that we always use `save`method, that is because `new` method builds an object in memory, but it saves into database until `save` method is executed. 
 
 **Note that in all of these examples we did not set the `id` attribute, ActiveRecord handles this for us!**
 
@@ -477,13 +475,13 @@ my_products = Product.create(
 	[ 
 		{name: "A productirijillo"}, 
 		{name: "another productirijillo"}
-    ])
+    ]
+)
 ```
 
 ### Finding existing records
 
 *We'll present the most common methods to read information, but you might want to check the complete [documentation](http://edgeguides.rubyonrails.org/active_record_querying.html) to see the power of ActiveRecord*
-
 
 Reading from a database involves specyfing which particular rows of data are you interested in. The simplest way to finding a row in a table is by specifying it's primary key
 
@@ -509,7 +507,7 @@ If none of the products match the criteria an `ActiveRecord::RecordNotFound` exc
 ActiveRecord::RecordNotFound: Couldn't find Product with 'id'=10008000
 ```
 
-If you simply want to return the whole collection you can
+If you simply want to return the whole collection you can use
 
 ```ruby
 => Product.all
@@ -575,26 +573,29 @@ products.each do |product|
 end
 ```
 
-And that's it, that's what you're mostly gonna use. There's another methods that are kind of hidden in the documentation `update` & `update_all`
+And that's it, that's what you're mostly gonna use. There's another methods that are kind of hidden in the documentation `update` & `update_all`. The `update` method takes an id parameter and a set of attributes, then it fetches the corresponding row, updates the given attributes, and saves the result to the database. A lot of working for just a single command don't you think? 
+
 
 ```ruby
 Product.update(1, name: "new name")
 ```
 
-The `update` method takes an id parameter and a set of attributes, then it fetches the corresponding row, updates the given attributes, and saves the result to the database. A lot of working for just a single command don't you think? 
+`update_all` method just like the name will update all related records. We can also do something like this:
+
 
 ```ruby
 Product.update_all(name: "new name")
 ```
 
-`update_all` method just like the name will update all related records. We can also do something like this:
+
+This will only update products that were previously retrieved in the first query.
+
 
 ```ruby
 products = Product.where("active = 'ACTIVE'")
 products.update_all(name: "new name")
 ```
 
-This will only update products that were previously retrieved in the first query.
 
 ### Deleting records 
 
@@ -677,7 +678,7 @@ end
 
 #### Exclusion & inclusion
 
-```rubys
+```ruby
 validates :name, exclusion: { in: %w(facebook twitter google), message: "%{value} is reserved." }
 validates :size, inclusion: { in: %w(small medium large), message: "%{value} is not a valid size" }
 ```
@@ -714,7 +715,7 @@ class Order < ActiveRecord::Base
 end
 
 class Person < ActiveRecord::Base
-  validates :surname, presence: true, if: "name.nil?"
+  validates :last_name, presence: true, if: "name.nil?"
 end
 
 ```
@@ -738,7 +739,9 @@ authors:
   id:integer
   name:string
   #...
+```
 
+```ruby
 class Post < ActiveRecord::Base
   belongs_to :author
 end
@@ -765,7 +768,9 @@ orders:
   id:integer
   name:string
   #...
+```
 
+```ruby
 class Invoice < ActiveRecord::Base
   belongs_to :office
 end
@@ -793,7 +798,9 @@ authors:
 photos:
   id:integer
   post_id:integer
+```
 
+```
 class Post < ActiveRecord::Base
   belongs_to :author
   has_many :photos
@@ -881,10 +888,10 @@ Migrations are just ruby classes place inside `db/migrate` directory. Each migra
 
 Although you could create these migration files by hand, it's easier and less prone to error to use a rails generator. Normally you would use two different generators to create a migration.
 
-* By creating a model, as we saw before the model generator creates a migration taht creates the table associated to the model (you can skip the migration with --skip-migration).
+* By creating a model, as we saw before the model generator creates a migration that creates the table associated to the model (you can skip the migration with --skip-migration).
 
 ```bash
-❯ rails g model Product
+$ rails g model Product
       invoke  active_record
       create    db/migrate/20160201210243_create_products.rb
       create    app/models/product.rb
@@ -1052,21 +1059,6 @@ At its simplest, a web application accepts an incoming request from a browser, p
 Rails has a convenient way that lets you define routes based on resources, such as the models that you can define. This convenient way is also flexible so you can freely add your own personalized routes
 
 Rails routes support the mapping between URLs and actions based on the contents of the URL and on the HTTP method used to invoke the request
-
-### REST
-
-In REST we use a simple set of verbs to operate on a rich set of nouns, each verb correspond to HTTP methods (GET, PUT, PATCH, POST, and DELETE, typically). The nouns are the resources in our application, and we name those resources using URLs.
-
-Imagine that your application handles a set of Products, there are two implicit resources you can handle here: 1) individuals products and 2) collections of products, so:
-
-* To fetch a list of all the products, we could issue an HTTP GET request agains the collection: `/products/`
-* To fetch the contents of an individual resource, first we have to identify it through its ID and then we'd issue a GET request: `/products/1`
-* To create a new product in our application, we use an HTTP POST request directed at `/products/` path, with the post data containg the product to add. Yes, that's the same path we used to get a list of products, so if you issue a GET to it, it responds with a list, and if you do a POST to it, it adds a new product to the collection
-* To update that product, you would do something similar when fetching an individual resource: first retrieve the resource through its identifier and then you'd issue an HTTP PUT request: `/products/1`
-* And finally deleting the product follows the same guideline as fetching and updating an individual resource, but only you'd issue an HTTP DELETE request:  `/products/1`
-
-
-And what about if your application also tracks users? But we'll do exactly the same because we just have another set of recurses to deal with: REST tells use to use the same set of verbs (GET, POST, PUT and DELETE) against a similar-looking set of URLs (/users, users/1 and so on)
 
 ### Rails resources
 
