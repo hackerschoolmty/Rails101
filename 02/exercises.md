@@ -1,39 +1,38 @@
 ## Hackershool directory guide
 
-
-## Steps
-
 1. Fork hackerschool_directory repository we just made
 2. Run `bundle install` to install any dependency
 3. Run `rake db:migrate` to create the schema
-3. Create `Course` and `Language` models as stated in [Model attributes](#model-attributes)
 4. Complete user stories described in [here](#user-stories)
-5. Make a PR to hackerschool repository master once you have finished.
+5. Ensure your application meets the [requirements](#requirements)
+5. Make a PR to hackerschool repository once you have finished.
 
 ## Model attributes 
 
-![rails_and_mvc](hacker_school.png)
+![hackerschool](hacker_school.png)
 
 
 ## User stories
 
-* As a user I have access to all CRUD operations for generations
-* As a user I have access to all CRUD operations for hackers
-* As a user I have access to all CRUD operations for courses
-* As a user I have access to all CRUD operatios for languages 
-* As a user I want a general perspective of hacker school generations (*check [report requirement]() section*)
+* As a user I have access to all CRUD *(Create, Read, Update, Delete)* operations for generations
+* As a user I have access to all CRUD *(Create, Read, Update, Delete)* operations for hackers
+* As a user I have access to all CRUD *(Create, Read, Update, Delete)* operations for courses
+* As a user I have access to all CRUD *(Create, Read, Update, Delete)* operatios for languages 
+* **Bonus point:** As a user I want a general perspective of hacker school generations (*check [report requirement](#reports) section*)
 
 
 ## Requirements
 
+- Generations must be accesed through `/generations`
+- Hackers must be accessed through `/hackers` 
 - Languages must be accesed through `/languages`
-- Courses resource must be inside of generations. So if a user goes to `/generations/1/courses` that view should display courses related to that generation. 
-- A hacker email and github_account must be unique
-- All hacker name must be mandatory
+- A hacker email must be unique
+- A hacker name must be mandatory
 - All generation attributes must be mandatory. E.g a generation must have a name and a start_date
 - A course name must be mandatory 
 
-### Reports
+
+### Reports (bonus points) 
 
 - Create a new controller called `reports` 
 - This controller will only have one action: `general`. This action will contain two sections: Hacker section & Course section

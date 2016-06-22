@@ -1,3 +1,11 @@
+# Hacker Library
+
+Complete the following requirements:
+
+- Courses resource must be inside of generations. So if a user goes to `/generations/1/courses` that view should display courses related to that generation. 
+
+
+
 # Hacker store
 
 ## Steps
