@@ -1,4 +1,4 @@
-# Hacker Library
+# Hacker Directory
 
 Complete the following requirements:
 
@@ -27,7 +27,7 @@ Complete the following requirements:
 - As a user 
 	- I have access to all CRUD products operations
 	- I have access to all CRUD users operations
-	- I can activate or inactivate products
+	- I can activate or deactivate products
 	- I can create orders
 	- I can see the detail of an order (total, number of line items, etc)
 	- I can only see orders that I've created
